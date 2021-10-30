@@ -3,8 +3,11 @@ importer and exporter for volumetric dataformat described at [http://paulbourke.
 **Modified Part:**
 
 the fifth line indicates the number of features for each cell, and the binary data type is always float (32 bits) in little endian.
+
 $$\boldsymbol{C}^{i,j,k}=\left[c_{i,j,k}^{0}, c_{i,j,k}^{1}, c_{i,j,k}^{2},\dots,c_{i,j,k}^{N_c}\right]$$
+
 the binary data is a **vector of floats** with a total lenght of $N_{x}\times N_{y}\times N_{z}\times N_{c}$.
+
 $$\left[
     \boldsymbol{C}_{0,0,0}
     \boldsymbol{C}_{0,0,1},
