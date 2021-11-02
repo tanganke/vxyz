@@ -2,6 +2,20 @@
 #include <string>
 #include <vector>
 
+/**
+ * @brief This is the class to import and export volumetric data, the data format is described as http://paulbourke.net/dataformats/volumetric/.
+ * @details 
+ * **Header**
+ * 
+ * > The header consists of a number of lines (5) separated by linefeed characters, ASCII Hex "0a". The header lines are described as follows:
+ * > 1. The first line consists of a comment, the comment can be as long as need be as long as it doesn't contain a linefeed.
+ * > 2. The second line consists of three integers giving the size of the volume grid in the three directions, from now on referred here as x, y, z. These dimensions must be positive, they may be 1 but not 0.
+ * > 3. The third line consists of three floating point numbers indicating the size of the cells in each direction. This gives support of non cubic cells, of course this is only interpreted by the display or analysis software. The size of a cell must be greater than 0.
+ * > 4. The fourth line consists of three floating point numbers giving the real world coordinates of the lower corner of the volumetric dataset. The upper corner can be calculated given the number of cells and the cell size. Similarly the real world coordinates of any cell can be computed.
+ * > 5. (*modified*) the fifth line indicates the number of features for each cell, and the binary data type is always float (32 bits) in little endian.
+ * 
+ * **Binary Data Block**
+ */
 class vxyz_t
 {
 public:
@@ -25,9 +39,14 @@ private:
     }
 
 public:
+    /** default constructor */
     vxyz_t();
+    /** load volumetric data from file `filename` */
     vxyz_t(const char *filename);
+
+    /** load volumetric data from file `filename` */
     void load(const char *filename);
+    /** save volumetric data to file `filename` */
     void save(const char *filename);
 
     inline vxyz_t &set_comment(const char *comment_)
